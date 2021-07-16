@@ -16,13 +16,4 @@ public class CloudProviderApplication {
         SpringApplication.run(CloudProviderApplication.class, args);
     }
 
-    @RestController
-    public class EchoController {
-
-        @GetMapping(value = "/echo/{string}")
-        public String echo(@PathVariable String string) {
-            return "Hello Nacos Discovery " + string;
-        }
-    }
-
 }

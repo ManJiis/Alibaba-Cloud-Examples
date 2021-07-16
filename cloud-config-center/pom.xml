@@ -9,7 +9,7 @@
     <description>Spring Cloud Alibaba Config Center</description>
 
     <parent>
-        <artifactId>spring-cloud-alibaba-dubbo-examples</artifactId>
+        <artifactId>spring-cloud-alibaba-dubbo</artifactId>
         <groupId>top.b0x0.cloud.alibaba</groupId>
         <version>${revision}</version>
     </parent>
