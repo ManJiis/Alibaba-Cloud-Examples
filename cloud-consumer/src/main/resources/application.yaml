@@ -1,0 +1,17 @@
+server:
+  port: 8090
+service:
+  version: 1.0.0
+provider:
+  application:
+    name: b0x0-cloud-provider
+dubbo:
+  cloud:
+    # The subscribed services in consumer side
+    subscribed-services: ${provider.application.name}
+  protocols:
+    dubbo:
+      port: -1
+  consumer:
+    check: false
+
