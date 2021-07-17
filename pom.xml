@@ -8,7 +8,7 @@
     <artifactId>spring-cloud-alibaba-dubbo</artifactId>
     <version>${revision}</version>
 
-    <name>spring-cloud-alibaba-dubbo-examples</name>
+    <name>Alibaba Cloud Examples</name>
 
     <packaging>pom</packaging>
 
@@ -38,6 +38,7 @@
         <module>cloud-provider</module>
         <module>cloud-consumer</module>
         <module>cloud-api</module>
+        <module>cloud-consumer</module>
     </modules>
 
     <dependencyManagement>

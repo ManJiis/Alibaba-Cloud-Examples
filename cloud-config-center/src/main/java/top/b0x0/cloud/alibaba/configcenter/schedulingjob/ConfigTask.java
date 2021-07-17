@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * @author TANG
+ * @author ManJiis
  * @since 2021/05/10
  */
 @Component

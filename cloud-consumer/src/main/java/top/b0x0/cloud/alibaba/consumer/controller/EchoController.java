@@ -6,17 +6,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import top.b0x0.cloud.alibaba.api.EchoService;
+import top.b0x0.cloud.alibaba.common.vo.R;
 
 /**
  * 回声测试
  *
- * @author TANG
+ * @author ManJiis
  * @date 2021-07-16
  * @since jdk1.8
  */
 @RestController
 public class EchoController {
 
+//    @DubboReference(version = "${service.version}", validation = "CustomValidator")
     @DubboReference(version = "${service.version}")
     private EchoService echoService;
 
@@ -24,11 +26,12 @@ public class EchoController {
     private String serviceVersion;
 
     @GetMapping("/echo/{string}")
-    public String echo(@PathVariable String string) {
+    public R echo(@PathVariable String string) {
         System.out.println("string = " + string);
         System.out.println("serviceVersion = " + serviceVersion);
         System.out.println("echoService = " + echoService);
-        return echoService.echo(string);
+        String hello = echoService.sayHello(string);
+        return R.ok(hello);
     }
 
 //    @Autowired

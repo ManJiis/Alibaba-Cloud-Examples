@@ -23,22 +23,28 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>javax.validation</groupId>-->
+<!--            <artifactId>validation-api</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate.validator</groupId>-->
+<!--            <artifactId>hibernate-validator</artifactId>-->
+<!--        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>2.1.1</version>
-        </dependency>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>javax.ws.rs</groupId>-->
+<!--            <artifactId>javax.ws.rs-api</artifactId>-->
+<!--            <version>2.1.1</version>-->
+<!--        </dependency>-->
 
+        <dependency>
+            <groupId>top.b0x0.cloud.alibaba</groupId>
+            <artifactId>cloud-common</artifactId>
+            <version>${revision}</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>top.b0x0.cloud.alibaba</groupId>
             <artifactId>cloud-api</artifactId>
@@ -89,6 +95,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
     </dependencies>
 
 

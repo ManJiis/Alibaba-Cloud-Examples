@@ -1,12 +1,12 @@
-package top.b0x0.cloud.alibaba.provider.nacosdiscovery;
+package top.b0x0.cloud.alibaba.consumer.config;
 
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author musui
+ * @author ManJiis
  */
-@EnableDiscoveryClient  //使用 @EnableDiscoveryClient 注解开启服务注册与发现功能
+@EnableDiscoveryClient
 @Configuration
 public class NacosDiscoveryConfiguration {
 }

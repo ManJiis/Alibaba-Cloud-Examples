@@ -1,11 +1,11 @@
 package top.b0x0.cloud.alibaba.api;
 
 /**
- * @author TANG
+ * @author ManJiis
  * @date 2021-07-16
  * @since jdk1.8
  */
 public interface EchoService {
 
-    String echo(String param);
+    String sayHello(String param);
 }
