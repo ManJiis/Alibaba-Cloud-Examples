@@ -14,7 +14,6 @@ import top.b0x0.cloud.alibaba.common.exception.ExceptionUtil;
  * @since 2021-07-16
  * @since 1.8
  */
-//@DubboService(version = "${service.version}",validation = "CustomValidator")
 @DubboService(version = "${service.version}", group = "b0x0-cloud-provider1")
 public class EchoServiceImpl implements EchoService {
     private static final Logger log = LoggerFactory.getLogger(EchoServiceImpl.class);

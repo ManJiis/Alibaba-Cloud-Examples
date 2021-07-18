@@ -32,7 +32,6 @@ import java.util.List;
 public class EchoController {
     private final Logger log = LoggerFactory.getLogger(EchoController.class);
 
-    //    @DubboReference(version = "${service.version}", validation = "CustomValidator")
     @DubboReference(version = "${service.version}", group = "b0x0-cloud-provider1")
     private EchoService echoService1;
 
@@ -46,9 +45,13 @@ public class EchoController {
     public R echo1(@PathVariable String string) {
         log.info("string = {}", string);
         log.info("serviceVersion = {}", serviceVersion);
-        log.info("echoService = {}", echoService1);
-        String hello = echoService1.sayHello(string);
-        return R.ok(hello);
+        log.info("echoService1 = {}", echoService1);
+        log.info("echoService2 = {}", echoService2);
+        String sayHello = echoService1.sayHello(string);
+        log.info("sayHello: {}", sayHello);
+        String bonjour = echoService2.bonjour(string);
+        log.info("bonjour: {}", bonjour);
+        return R.ok(bonjour);
     }
 
     @GetMapping("/echo2/{string}")
