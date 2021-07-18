@@ -34,9 +34,10 @@ public class EchoController {
 
     @DubboReference(version = "${service.version}", group = "b0x0-cloud-provider1")
     private EchoService echoService1;
-
-    @DubboReference(version = "${service.version}", group = "b0x0-cloud-provider2")
-    private EchoService echoService2;
+//    @DubboReference(version = "${service.version}", group = "b0x0-cloud-provider2")
+//    private EchoService echoService2;
+//    @DubboReference(version = "${service.version}", group = "b0x0-cloud-provider1")
+//    private DubboMetadataService dubboMetadataService1;
 
     @Value("${service.version}")
     private String serviceVersion;
@@ -46,18 +47,21 @@ public class EchoController {
         log.info("string = {}", string);
         log.info("serviceVersion = {}", serviceVersion);
         log.info("echoService1 = {}", echoService1);
-        log.info("echoService2 = {}", echoService2);
+//        log.info("echoService2 = {}", echoService2);
         String sayHello = echoService1.sayHello(string);
         log.info("sayHello: {}", sayHello);
-        String bonjour = echoService2.bonjour(string);
-        log.info("bonjour: {}", bonjour);
-        return R.ok(bonjour);
+//        String bonjour = echoService2.bonjour(string);
+//        log.info("bonjour: {}", bonjour);
+//        Map<String, String> allExportedURLs = dubboMetadataService1.getAllExportedURLs();
+//        log.info("allExportedURLs: {}", allExportedURLs);
+        return R.ok(string);
     }
 
     @GetMapping("/echo2/{string}")
     public R echo2(@PathVariable String string) {
         log.info("string = {}", string);
-        String hello = echoService2.bonjour(string);
+//        String hello = echoService2.bonjour(string);
+        String hello = string;
         return R.ok(hello);
     }
 
