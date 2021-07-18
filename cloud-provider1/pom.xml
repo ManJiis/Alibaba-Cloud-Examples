@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-consumer</artifactId>
+    <artifactId>cloud-provider1</artifactId>
     <version>${revision}</version>
-    <name>cloud-consumer</name>
+    <name>cloud-provider1</name>
 
-    <description>Spring Cloud Alibaba Consumer</description>
+    <description>Spring Cloud Alibaba Provider</description>
 
     <parent>
         <artifactId>spring-cloud-alibaba-dubbo</artifactId>
@@ -23,27 +23,10 @@
 
     <dependencies>
 
-<!--        <dependency>-->
-<!--            <groupId>javax.validation</groupId>-->
-<!--            <artifactId>validation-api</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate.validator</groupId>-->
-<!--            <artifactId>hibernate-validator</artifactId>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>javax.ws.rs</groupId>-->
-<!--            <artifactId>javax.ws.rs-api</artifactId>-->
-<!--            <version>2.1.1</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>top.b0x0.cloud.alibaba</groupId>
             <artifactId>cloud-common</artifactId>
             <version>${revision}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>top.b0x0.cloud.alibaba</groupId>
@@ -56,10 +39,28 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.starter.version}</version>
+        </dependency>
 
+        <!-- Dubbo Spring Cloud Starter -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -127,7 +128,8 @@
             <artifactId>arthas-spring-boot-starter</artifactId>
             <version>3.4.8</version>
             <scope>runtime</scope>
-        </dependency>-->
+        </dependency>
+        -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -144,6 +146,22 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+<!--        &lt;!&ndash; Resolve the Dubbo REST RPC issue &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>javax.servlet</groupId>-->
+<!--            <artifactId>javax.servlet-api</artifactId>-->
+<!--            <version>3.1.0</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>javax.validation</groupId>-->
+<!--            <artifactId>validation-api</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate.validator</groupId>-->
+<!--            <artifactId>hibernate-validator</artifactId>-->
+<!--        </dependency>-->
 
     </dependencies>
 
@@ -165,7 +183,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>top.b0x0.cloud.alibaba.consumer.CloudConsumerApplication</mainClass>
+                    <mainClass>top.b0x0.cloud.alibaba.provider1.CloudProvider1Application</mainClass>
                 </configuration>
                 <executions>
                     <execution>

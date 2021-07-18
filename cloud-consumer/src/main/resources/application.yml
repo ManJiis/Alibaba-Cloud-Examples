@@ -1,0 +1,15 @@
+server:
+  port: 8090
+service:
+  version: 1.0.0
+
+dubbo:
+  cloud:
+    # The subscribed services in consumer side
+    subscribed-services: b0x0-cloud-provider1,b0x0-cloud-provider2
+  protocols:
+    dubbo:
+      port: -1
+  consumer:
+    check: false
+
