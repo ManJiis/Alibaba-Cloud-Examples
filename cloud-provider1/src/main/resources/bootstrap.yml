@@ -3,10 +3,27 @@ spring:
     name: b0x0-cloud-provider1
   main:
     allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/sdnd?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root@123
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    #    password: redis
+    timeout: 5000
+    jedis:
+      pool:
+        max-idle: 500
+        min-idle: 50
+        max-active: 1000
+        max-wait: 2000
 
   # default disable all
   cloud:
     nacos:
+      # Nacos 服务发现与注册配置
       discovery:
         enabled: true
         register-enabled: true

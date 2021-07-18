@@ -5,11 +5,18 @@ service:
 
 dubbo:
   scan:
+    # dubbo 服务扫描基准包
     base-packages: top.b0x0.cloud.alibaba.provider2.service
   protocols:
     dubbo:
+      # dubbo 协议
       name: dubbo
+      # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
       port: -1
+    provider:
+      filter:
+      retries: 3
+      timeout: 30000
 #    rest:
 #      name: rest
 #      port: 9090

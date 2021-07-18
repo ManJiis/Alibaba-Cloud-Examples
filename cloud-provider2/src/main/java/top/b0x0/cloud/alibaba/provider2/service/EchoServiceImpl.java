@@ -4,6 +4,8 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.rpc.RpcException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import top.b0x0.cloud.alibaba.api.EchoService;
 import top.b0x0.cloud.alibaba.common.exception.ExceptionUtil;
 
@@ -12,8 +14,9 @@ import top.b0x0.cloud.alibaba.common.exception.ExceptionUtil;
  * @since 2021-07-16
  * @since 1.8
  */
-@DubboService(version = "${service.version}")
+@DubboService(version = "${service.version}", group = "provide2")
 public class EchoServiceImpl implements EchoService {
+    private static final Logger log = LoggerFactory.getLogger(EchoServiceImpl.class);
 
     @Override
     @SentinelResource(value = "sayHello",
@@ -22,6 +25,7 @@ public class EchoServiceImpl implements EchoService {
 //    @SentinelResource(value = "sayHello", blockHandler = "exceptionHandler", fallback = "helloFallback")
     // 原函数
     public String sayHello(String param) {
+        log.info("provider2 = {}", param);
         if ("error".equals(param)) {
             throw new RpcException("error oops...");
         }
@@ -30,7 +34,7 @@ public class EchoServiceImpl implements EchoService {
 
     // Fallback 函数，函数签名与原函数一致或加一个 Throwable 类型的参数.
     public String helloFallback(String s) {
-        return String.format("EchoServiceImpl sayHello %s", s);
+        return String.format("provide2 --> EchoServiceImpl sayHello %s", s);
     }
 
     // Block 异常处理函数，参数最后多一个 BlockException，其余与原函数一致.
@@ -47,7 +51,7 @@ public class EchoServiceImpl implements EchoService {
     }
 
     public String defaultFallback() {
-        System.out.println("Go to default fallback");
+        log.info("Go to default fallback");
         return "default_fallback";
     }
 

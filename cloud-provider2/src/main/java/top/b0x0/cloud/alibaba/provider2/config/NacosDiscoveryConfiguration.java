@@ -1,29 +1,19 @@
 package top.b0x0.cloud.alibaba.provider2.config;
 
-import com.alibaba.csp.sentinel.annotation.aspectj.SentinelResourceAspect;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * 使用 @EnableDiscoveryClient 注解开启服务注册与发现功能
+ *
  * @author ManJiis
  */
-@EnableDiscoveryClient  //使用 @EnableDiscoveryClient 注解开启服务注册与发现功能
+@EnableDiscoveryClient
 @Configuration
 public class NacosDiscoveryConfiguration {
 
-    /**
-     * spring-cloud-starter-alibaba-sentinel
-     *
-     * @return /
-     */
-    @Bean
-    public SentinelResourceAspect sentinelResourceAspect() {
-        return new SentinelResourceAspect();
-    }
-
 /*    @Bean
-    public void sentinelConfig() {
+    public void flowRuleConfig() {
         FlowRule flowRule = new FlowRule();
         flowRule.setResource(
                 "com.alibaba.cloud.examples.FooService:hello(java.lang.String)");
