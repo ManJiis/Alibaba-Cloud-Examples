@@ -8,4 +8,6 @@ package top.b0x0.cloud.alibaba.api;
 public interface EchoService {
 
     String sayHello(String param);
+
+    String bonjour(String name);
 }

@@ -1,0 +1,3 @@
+paramReceiveFilter1=top.b0x0.cloud.alibaba.provider1.filter.DownStreamFilter
+paramReceiveFilter2=top.b0x0.cloud.alibaba.provider2.filter.DownStreamFilter
+paramPassFilter=top.b0x0.cloud.alibaba.consumer.filter.UpStreamFilter

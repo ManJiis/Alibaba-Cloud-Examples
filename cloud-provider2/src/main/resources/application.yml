@@ -4,6 +4,9 @@ service:
   version: 1.0.0
 
 dubbo:
+  cloud:
+    # The subscribed services in consumer side
+    subscribed-services: b0x0-cloud-provider1,b0x0-cloud-provider2
   scan:
     # dubbo 服务扫描基准包
     base-packages: top.b0x0.cloud.alibaba.provider2.service
@@ -13,10 +16,10 @@ dubbo:
       name: dubbo
       # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
       port: -1
-    provider:
-      filter:
-      retries: 3
-      timeout: 30000
+  provider:
+    filter: paramReceiveFilter2
+    retries: 3
+    timeout: 30000
 #    rest:
 #      name: rest
 #      port: 9090

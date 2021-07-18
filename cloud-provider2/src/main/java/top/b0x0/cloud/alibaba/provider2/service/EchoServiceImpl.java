@@ -14,7 +14,7 @@ import top.b0x0.cloud.alibaba.common.exception.ExceptionUtil;
  * @since 2021-07-16
  * @since 1.8
  */
-@DubboService(version = "${service.version}", group = "provide2")
+@DubboService(version = "${service.version}", group = "b0x0-cloud-provider2")
 public class EchoServiceImpl implements EchoService {
     private static final Logger log = LoggerFactory.getLogger(EchoServiceImpl.class);
 
@@ -53,6 +53,19 @@ public class EchoServiceImpl implements EchoService {
     public String defaultFallback() {
         log.info("Go to default fallback");
         return "default_fallback";
+    }
+
+    @SentinelResource(value = "EchoServiceImpl#bonjour", defaultFallback = "bonjourFallback")
+    @Override
+    public String bonjour(String name) {
+        return "Bonjour, " + name;
+    }
+
+    public String bonjourFallback(Throwable t) {
+        if (BlockException.isBlockException(t)) {
+            return "Blocked by Sentinel: " + t.getClass().getSimpleName();
+        }
+        return "Oops, failed: " + t.getClass().getCanonicalName();
     }
 
 }

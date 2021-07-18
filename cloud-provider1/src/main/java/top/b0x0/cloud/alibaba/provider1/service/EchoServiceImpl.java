@@ -15,7 +15,7 @@ import top.b0x0.cloud.alibaba.common.exception.ExceptionUtil;
  * @since 1.8
  */
 //@DubboService(version = "${service.version}",validation = "CustomValidator")
-@DubboService(version = "${service.version}", group = "provide1")
+@DubboService(version = "${service.version}", group = "b0x0-cloud-provider1")
 public class EchoServiceImpl implements EchoService {
     private static final Logger log = LoggerFactory.getLogger(EchoServiceImpl.class);
 
@@ -31,6 +31,11 @@ public class EchoServiceImpl implements EchoService {
             throw new RpcException("error oops...");
         }
         return param;
+    }
+
+    @Override
+    public String bonjour(String name) {
+        return null;
     }
 
     // Fallback 函数，函数签名与原函数一致或加一个 Throwable 类型的参数.
