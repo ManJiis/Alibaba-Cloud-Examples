@@ -10,7 +10,7 @@
     <description>Spring Cloud Alibaba Common</description>
 
     <parent>
-        <artifactId>spring-cloud-alibaba-dubbo</artifactId>
+        <artifactId>alibaba-cloud-examples</artifactId>
         <groupId>top.b0x0.cloud.alibaba</groupId>
         <version>${revision}</version>
     </parent>
@@ -22,11 +22,6 @@
     </properties>
 
     <dependencies>
-        <!-- Dubbo Spring Cloud Starter -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-dubbo</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>javax.validation</groupId>
@@ -56,7 +51,14 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
     </dependencies>
 
 

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: b0x0-cloud-web
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        enabled: false
+        register-enabled: false
+        server-addr: 127.0.0.1:8848
+ribbon:
+  nacos:
+    enabled: true
+
+

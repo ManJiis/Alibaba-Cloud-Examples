@@ -1,0 +1,32 @@
+server:
+  port: 8091
+service:
+  version: 1.0.0
+
+dubbo:
+#  cloud:
+#    # The subscribed services in consumer side
+#    subscribed-services: b0x0-cloud-provider1,b0x0-cloud-provider2
+  scan:
+    # dubbo 服务扫描基准包
+    base-packages: top.b0x0.cloud.alibaba.user.service
+#  registry:
+#    # 挂载到 Spring Cloud 注册中心
+#    address: spring-cloud://localhost
+  protocols:
+    dubbo:
+      # dubbo 协议
+      name: dubbo
+      # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+      port: 20888
+  provider:
+    filter: userReceiveFilter
+    retries: 3
+    timeout: 30000
+#    rest:
+#      name: rest
+#      port: 9091
+#      server: netty
+feign:
+  hystrix:
+    enabled: false

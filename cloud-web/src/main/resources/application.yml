@@ -1,0 +1,27 @@
+#spring:
+#  profiles:
+##    active: dev
+#    include: dev,nacos
+server:
+  port: 8090
+service:
+  version: 1.0.0
+
+dubbo:
+  cloud:
+    # The subscribed services in consumer side
+    subscribed-services: b0x0-cloud-user,b0x0-cloud-auth
+#  registry:
+#    # 挂载到 Spring Cloud 注册中心
+#    address: spring-cloud://localhost
+  protocols:
+    dubbo:
+      # dubbo 协议
+      name: dubbo
+      # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+      port: -1
+  consumer:
+    check: false
+    timeout: 30000
+    filter: webPassFilter
+
