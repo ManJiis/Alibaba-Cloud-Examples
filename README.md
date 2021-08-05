@@ -41,7 +41,7 @@ Spring Cloud Alibaba 组件学习。
 
 **cloud-order**：受保护的API服务，用户鉴权通过后可以访问该服务，不整合JWT；
 
-[流程图](admin_docs/images/Alibaba-Cloud-Examples.png)
+![流程图](admin_docs/images/Alibaba-Cloud-Examples.png)
 
 问题补充:
 
