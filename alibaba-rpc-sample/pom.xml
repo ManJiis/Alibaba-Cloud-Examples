@@ -6,6 +6,7 @@
 
     <groupId>top.b0x0.cloud.alibaba</groupId>
     <artifactId>alibaba-rpc-sample</artifactId>
+    <name>Alibaba RPC Sample</name>
     <packaging>pom</packaging>
     <version>${revision}</version>
 
