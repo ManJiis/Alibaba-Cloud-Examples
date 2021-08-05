@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    include: dbConfig
+    active: dev
+b0x0:
+  gateway:
+    tokenFilter:
+      whiteList: /auth/login,/user/list,/auth/echo
+

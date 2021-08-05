@@ -23,15 +23,15 @@
 
     <dependencies>
 
+<!--        <dependency>-->
+<!--            <groupId>top.b0x0.cloud.alibaba</groupId>-->
+<!--            <artifactId>cloud-common</artifactId>-->
+<!--            <version>${revision}</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>top.b0x0.cloud.alibaba</groupId>
-            <artifactId>cloud-common</artifactId>
-            <version>${revision}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>top.b0x0.cloud.alibaba</groupId>
-            <artifactId>cloud-api</artifactId>
+            <artifactId>cloud-common-api</artifactId>
             <version>${revision}</version>
             <scope>compile</scope>
         </dependency>
@@ -78,10 +78,11 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>-->
+        </dependency>
+
         <!--
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
@@ -97,10 +98,17 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>-->
+
         <!-- Dubbo Spring Cloud Starter -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-dubbo</artifactId>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.apache.dubbo</groupId>-->
+<!--                    <artifactId>dubbo</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
         <!--
                 &lt;!&ndash; Dubbo Spring Boot Starter &ndash;&gt;
@@ -134,6 +142,28 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <!-- Spring Cloud Open Feign -->
+        <!--openFeign的依赖 以下三个，不然抛出ClassNotFoundException-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.archaius</groupId>
+            <artifactId>archaius-core</artifactId>
+            <version>0.7.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
 
         <!-- List all Spring Cloud starters for Service Discovery -->
@@ -172,14 +202,14 @@
         </dependency>
 -->
         <!-- validation -->
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>javax.validation</groupId>-->
+<!--            <artifactId>validation-api</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate.validator</groupId>-->
+<!--            <artifactId>hibernate-validator</artifactId>-->
+<!--        </dependency>-->
 
 
     </dependencies>

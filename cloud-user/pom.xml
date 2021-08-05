@@ -30,7 +30,7 @@
         </dependency>
         <dependency>
             <groupId>top.b0x0.cloud.alibaba</groupId>
-            <artifactId>cloud-api</artifactId>
+            <artifactId>cloud-common-api</artifactId>
             <version>${revision}</version>
             <scope>compile</scope>
         </dependency>
@@ -84,10 +84,10 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>-->
+        </dependency>
         <!--
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
@@ -143,6 +143,28 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <!-- Spring Cloud Open Feign -->
+        <!--openFeign的依赖 以下三个，不然抛出ClassNotFoundException-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.archaius</groupId>
+            <artifactId>archaius-core</artifactId>
+            <version>0.7.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
 
         <!-- List all Spring Cloud starters for Service Discovery -->

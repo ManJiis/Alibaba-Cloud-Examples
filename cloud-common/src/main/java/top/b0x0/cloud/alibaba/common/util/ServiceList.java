@@ -11,7 +11,7 @@ public class ServiceList {
     private ServiceList() {
     }
 
-    public static final String WEB = "b0x0-cloud-web";
+    public static final String PROVIDER_ORDER = "b0x0-cloud-order";
     public static final String PROVIDER_USER = "b0x0-cloud-user";
     public static final String PROVIDER_AUTH = "b0x0-cloud-auth";
 

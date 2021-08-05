@@ -1,3 +1,7 @@
+server:
+  port: 8092
+  servlet:
+    context-path: /auth
 spring:
   application:
     name: b0x0-cloud-auth
@@ -7,12 +11,23 @@ spring:
   # default disable all
   cloud:
     nacos:
+      username: nacos
+      password: nacos
+      server-addr: 127.0.0.1:8848
       # Nacos 服务发现与注册配置
       discovery:
         enabled: true
         register-enabled: true
-        server-addr: 127.0.0.1:8848
-        ephemeral: false
+#        server-addr: 127.0.0.1:8848  # nacos注册中心地址
+        ephemeral: true   # false为永久实例，true表示临时实例，注册为临时实例, 默认即为临时实例
+        cluster-name: auth-cluster  #集群名称
+        namespace: c1affcc0-0e86-4530-875d-2153faf4eced  # 命名空间 只能是uuid
+      config:
+#        server-addr: 127.0.0.1:8848  # nacos配置中心地址
+        namespace: c1affcc0-0e86-4530-875d-2153faf4eced # 命名空间 只能是uuid
+        group: alibaba-cloud-examples
+        file-extension: yaml  #配置文件的后缀名
+        refresh-enabled: true  #默认true：自动刷新
     sentinel:
       # 取消Sentinel控制台懒加载
       # 默认情况下 Sentinel 会在客户端首次调用的时候进行初始化，开始向控制台发送心跳包
@@ -20,11 +35,42 @@ spring:
       eager: true
       transport:
         # Sentinel 控制台地址
-        dashboard: 127.0.0.1:64000
-        port: 8719
-        clientIp: localhost
-eureka:
-  client:
+        dashboard: 127.0.0.1:8888
+dubbo:
+  cloud:
+    #     #The subscribed services in consumer side
+    subscribed-services: b0x0-cloud-user,b0x0-cloud-order
+  scan:
+    # dubbo 服务扫描基准包
+    base-packages: top.b0x0.cloud.alibaba.auth.service
+  registry:
+    #dubbo服务注册端口，注册中心服务器地址，如果地址没有端口缺省为9090，同一集群内的多个地址用逗号分隔，如：ip:port,ip:port
+    #其中前缀spring-cloud说明：挂载到 Spring Cloud注册中心
+    address: spring-cloud://127.0.0.1:8848
+    check: false  #关闭注册中心是否启动的相关检查,false表示不检查注册中心是否启动，就不会报错
+  protocols:
+    dubbo:
+      # dubbo 协议
+      name: dubbo
+      # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+      port: -1
+  provider:
+#    filter: authReceiveFilter
+    retries: 3
+    timeout: 30000
+  consumer:
+    check: false
+#    rest:
+#      name: rest
+#      port: 9092
+#      server: netty
+
+#eureka:
+#  client:
+#    enabled: false
+
+feign:
+  hystrix:
     enabled: false
 
 

@@ -47,16 +47,19 @@
         <!-- utils -->
         <lombok.version>1.18.16</lombok.version>
         <resteasy.version>3.0.19.Final</resteasy.version>
+        <java-jwt.version>3.10.0</java-jwt.version>
+        <fastjson.version>1.2.62</fastjson.version>
 
     </properties>
 
     <modules>
         <module>cloud-config-center</module>
-        <module>cloud-api</module>
+        <module>cloud-common-api</module>
         <module>cloud-common</module>
         <module>cloud-user</module>
         <module>cloud-auth</module>
-        <module>cloud-web</module>
+        <module>cloud-order</module>
+        <module>cloud-gateway</module>
     </modules>
 
     <dependencyManagement>
@@ -150,11 +153,37 @@
                 <artifactId>resteasy-jaxb-provider</artifactId>
                 <version>${resteasy.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <!-- 所有的子工程都会自动加入下面的依赖  -->
     <dependencies>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
+    <!-- SpringBoot 工程编译打包的插件，放在父pom中就直接给所有子工程继承 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

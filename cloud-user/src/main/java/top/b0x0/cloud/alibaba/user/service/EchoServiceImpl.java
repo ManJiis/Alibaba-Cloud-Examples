@@ -1,21 +1,22 @@
 package top.b0x0.cloud.alibaba.user.service;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import org.apache.dubbo.config.annotation.DubboService;
+import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.rpc.RpcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import top.b0x0.cloud.alibaba.api.EchoService;
+import top.b0x0.cloud.alibaba.api.IEchoService;
 
 /**
  * @author ManJiis
  * @since 2021-07-16
  * @since 1.8
  */
-@DubboService(version = "${service.version}", group = "b0x0-cloud-user")
+@Service(version = "${service.version}", group = "b0x0-cloud-user")
 @Component
-public class EchoServiceImpl implements EchoService {
+public class EchoServiceImpl implements IEchoService {
     private static final Logger log = LoggerFactory.getLogger(EchoServiceImpl.class);
 
     /**
@@ -25,10 +26,9 @@ public class EchoServiceImpl implements EchoService {
      * @return /
      */
     @Override
-//    @SentinelResource(value = "sayHello", blockHandler = "exceptionHandler", blockHandlerClass = ExceptionUtil.class, fallback = "helloFallback", defaultFallback = "defaultFallback", exceptionsToIgnore = {})
-//    @SentinelResource(value = "sayHello", blockHandler = "exceptionHandler", fallback = "helloFallback")
+//    @SentinelResource(value = "user#EchoServiceImpl#sayHello", blockHandler = "exceptionHandler", blockHandlerClass = ExceptionUtil.class, fallback = "helloFallback", defaultFallback = "defaultFallback", exceptionsToIgnore = {})
+    @SentinelResource(value = "user#EchoServiceImpl#sayHello", fallback = "sayHelloFallback")
     public String sayHello(String param) {
-        log.info("provider1 = {}", param);
         if ("error".equals(param)) {
             throw new RpcException("error oops...");
         }
@@ -36,8 +36,12 @@ public class EchoServiceImpl implements EchoService {
     }
 
     @Override
+    @SentinelResource(value = "user#EchoServiceImpl#bonjour", fallback = "defaultFallback")
     public String bonjour(String name) {
-        return null;
+        if ("error".equals(name)) {
+            throw new RpcException("error oops...");
+        }
+        return name;
     }
 
     /**
@@ -46,15 +50,15 @@ public class EchoServiceImpl implements EchoService {
      * @param s /
      * @return /
      */
-    public String helloFallback(String s) {
-        return String.format("provide1 --> EchoServiceImpl sayHello %s", s);
+    public String sayHelloFallback(String s) {
+        return String.format("user sayHelloFallback() --> EchoServiceImpl sayHello %s", s);
     }
 
-//    public String helloFallback(String s, Throwable ex) {
-//        // Do some log here.
-//        ex.printStackTrace();
-//        return "Oops, error occurred at " + s;
-//    }
+    public String sayHelloFallback(String s, Throwable ex) {
+        // Do some log here.
+        ex.printStackTrace();
+        return "Oops, error occurred at " + s;
+    }
 
     /**
      * Block 异常处理函数，参数最后多一个 BlockException，其余与原函数一致.
@@ -70,7 +74,7 @@ public class EchoServiceImpl implements EchoService {
     }
 
 
-    public String defaultFallback() {
+    public String defaultFallback(String name) {
         log.info("Go to default fallback");
         return "default_fallback";
     }

@@ -1,9 +1,0 @@
-top\b0x0\cloud\alibaba\web\filter\UpStreamFilter.class
-META-INF\spring-configuration-metadata.json
-top\b0x0\cloud\alibaba\web\controller\UserController.class
-top\b0x0\cloud\alibaba\web\config\RestTemplateConfig.class
-top\b0x0\cloud\alibaba\web\config\ValidateConfig.class
-top\b0x0\cloud\alibaba\web\config\WebConfig.class
-top\b0x0\cloud\alibaba\web\controller\EchoController.class
-top\b0x0\cloud\alibaba\web\CloudWebBootstrap.class
-top\b0x0\cloud\alibaba\web\exception\GlobalExceptionHandler.class

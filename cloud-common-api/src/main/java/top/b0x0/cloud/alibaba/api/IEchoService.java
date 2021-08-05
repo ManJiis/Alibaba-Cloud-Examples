@@ -1,0 +1,13 @@
+package top.b0x0.cloud.alibaba.api;
+
+/**
+ * @author ManJiis
+ * @date 2021-07-16
+ * @since jdk1.8
+ */
+public interface IEchoService {
+
+    String sayHello(String param);
+
+    String bonjour(String name);
+}

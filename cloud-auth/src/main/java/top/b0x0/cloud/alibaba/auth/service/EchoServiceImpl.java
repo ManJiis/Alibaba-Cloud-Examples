@@ -2,22 +2,21 @@ package top.b0x0.cloud.alibaba.auth.service;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import org.apache.dubbo.config.annotation.DubboService;
+import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.rpc.RpcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import top.b0x0.cloud.alibaba.api.EchoService;
-import top.b0x0.cloud.alibaba.common.exception.ExceptionUtil;
+import top.b0x0.cloud.alibaba.api.IEchoService;
 
 /**
  * @author ManJiis
  * @since 2021-07-16
  * @since 1.8
  */
-@DubboService(version = "${service.version}", group = "b0x0-cloud-auth")
+@Service(version = "${service.version}", group = "b0x0-cloud-auth")
 @Component
-public class EchoServiceImpl implements EchoService {
+public class EchoServiceImpl implements IEchoService {
     private static final Logger log = LoggerFactory.getLogger(EchoServiceImpl.class);
 
     /**
@@ -27,10 +26,10 @@ public class EchoServiceImpl implements EchoService {
      * @return /
      */
     @Override
-    @SentinelResource(value = "sayHello", blockHandler = "exceptionHandler", blockHandlerClass = ExceptionUtil.class, fallback = "helloFallback", defaultFallback = "defaultFallback", exceptionsToIgnore = {})
-//    @SentinelResource(value = "sayHello", blockHandler = "exceptionHandler", fallback = "helloFallback")
+//    @SentinelResource(value = "auth#EchoServiceImpl#sayHello", blockHandler = "exceptionHandler", blockHandlerClass = ExceptionUtil.class, fallback = "helloFallback", defaultFallback = "defaultFallback", exceptionsToIgnore = {})
+//    @SentinelResource(value = "auth#EchoServiceImpl#sayHello", blockHandler = "exceptionHandler", blockHandlerClass = ExceptionUtil.class)
+    @SentinelResource(value = "auth#EchoServiceImpl#sayHello", fallback = "sayHelloFallback")
     public String sayHello(String param) {
-        log.info("provider2 = {}", param);
         if ("error".equals(param)) {
             throw new RpcException("error oops...");
         }
@@ -43,8 +42,14 @@ public class EchoServiceImpl implements EchoService {
      * @param s /
      * @return /
      */
-    public String helloFallback(String s) {
-        return String.format("provide2 --> EchoServiceImpl sayHello %s", s);
+    public String sayHelloFallback(String s) {
+        return String.format("auth sayHelloFallback() --> sayHello %s", s);
+    }
+
+    public String sayHelloFallback(String s, Throwable ex) {
+        // Do some log here.
+        ex.printStackTrace();
+        return "auth sayHelloFallback() Oops, error occurred at " + s;
     }
 
     /**
@@ -57,13 +62,7 @@ public class EchoServiceImpl implements EchoService {
     public String exceptionHandler(String s, BlockException ex) {
         // Do some log here.
         ex.printStackTrace();
-        return "Oops, error occurred at " + s;
-    }
-
-    public String helloFallback(String s, Throwable ex) {
-        // Do some log here.
-        ex.printStackTrace();
-        return "Oops, error occurred at " + s;
+        return "auth exceptionHandler() Oops, error occurred at " + s;
     }
 
     public String defaultFallback() {
@@ -79,9 +78,9 @@ public class EchoServiceImpl implements EchoService {
 
     public String bonjourFallback(Throwable t) {
         if (BlockException.isBlockException(t)) {
-            return "Blocked by Sentinel: " + t.getClass().getSimpleName();
+            return "auth bonjourFallback() Blocked by Sentinel: " + t.getClass().getSimpleName();
         }
-        return "Oops, failed: " + t.getClass().getCanonicalName();
+        return "auth bonjourFallback() Oops, failed: " + t.getClass().getCanonicalName();
     }
 
 }

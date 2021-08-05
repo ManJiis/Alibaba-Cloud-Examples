@@ -15,6 +15,6 @@ public final class ExceptionUtil {
         // If you want to use method in other classes, you can set the blockHandlerClass
         // with corresponding Class (Note the method in other classes must be static).
         ex.printStackTrace();
-        System.out.println("Oops: " + ex.getClass().getCanonicalName());
+        System.out.println("ExceptionUtil Oops: " + ex.getClass().getCanonicalName());
     }
 }

@@ -4,7 +4,7 @@
 
 - 命名空间(Namespace)
 
-命名空间可用于进行不同环境的配置隔离。一般一个环境划分到一个命名空间
+命名空间可用于进行不同环境的配置隔离。一般一个环境(dev,demo,prod)划分到一个命名空间
 
 - 配置分组(Group)
 
@@ -29,6 +29,10 @@ ${prefix}-${spring.profile.active}.${file-extension}
 > 
 > `file-exetension` 为配置内容的数据格式，可以通过配置项 spring.cloud.nacos.config.file-extension 来配置。目前只支持 properties 和 yaml 类型。
 
-
-# 延伸阅读
+例如:
+b0x0-cloud-config-center-dev.yaml
+b0x0-cloud-order-dev.yaml
+b0x0-cloud-user-dev.yaml
+b0x0-cloud-auth-dev.yaml
+b0x0-cloud-gateway-dev.yaml
 

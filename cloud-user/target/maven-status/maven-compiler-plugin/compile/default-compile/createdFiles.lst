@@ -1,6 +1,9 @@
+top\b0x0\cloud\alibaba\user\controller\EchoController.class
 top\b0x0\cloud\alibaba\user\service\EchoServiceImpl.class
-top\b0x0\cloud\alibaba\user\CloudUserBootstrap$EchoController.class
-top\b0x0\cloud\alibaba\user\CloudUserBootstrap.class
+top\b0x0\cloud\alibaba\user\config\RestTemplateConfig.class
 top\b0x0\cloud\alibaba\user\config\SentinelConfig.class
 top\b0x0\cloud\alibaba\user\filter\DownStreamFilter.class
 META-INF\spring-configuration-metadata.json
+top\b0x0\cloud\alibaba\user\controller\UserController.class
+top\b0x0\cloud\alibaba\user\service\UserServiceImpl.class
+top\b0x0\cloud\alibaba\user\CloudUserBootstrap.class

@@ -1,0 +1,61 @@
+server:
+  port: 8093
+  servlet:
+    context-path: /gateway
+spring:
+  application:
+    name: b0x0-cloud-gateway
+  main:
+    allow-bean-definition-overriding: true
+
+  # default disable all
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      server-addr: 127.0.0.1:8848
+      # Nacos 服务发现与注册配置
+      discovery:
+        enabled: true
+        register-enabled: true
+        #        server-addr: 127.0.0.1:8848
+        ephemeral: true  # false为永久实例，true表示临时实例，注册为临时实例, 默认即为临时实例
+      config:
+        #        server-addr: 127.0.0.1:8848  # nacos配置中心地址
+        namespace: c1affcc0-0e86-4530-875d-2153faf4eced # 命名空间 只能是uuid
+        group: alibaba-cloud-examples
+        file-extension: yaml  #配置文件的后缀名
+        refresh-enabled: true  #默认true：自动刷新
+
+    gateway:
+      routes: # 路由数组[路由 就是指定当请求满足什么条件的时候转到哪个微服务]
+        - id: user-service-api          # 当前路由的标识, 要求唯一
+          uri: lb://b0x0-cloud-user  # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+          predicates: # 断言(就是路由转发要满足的条件)
+            - Path=/user/**       # 当请求路径满足Path指定的规则时,才进行路由转发
+            #filters:                   # 过滤器,请求在传递过程中可以通过过滤器对其进行一定的修改
+            #- StripPrefix=1           # 转发之前去掉1层路径
+
+        - id: order-service-api
+          uri: lb://b0x0-cloud-order
+          predicates:
+            - Path=/orders/**
+
+        - id: product-service-api
+          uri: lb://b0x0-cloud-product
+          predicates:
+            - Path=/products/**
+
+        - id: auth-service-api
+          uri: lb://b0x0-cloud-auth
+          predicates:
+            - Path=/auth/**
+
+        - id: qq_route
+          uri: https://www.qq.com
+          predicates:
+            - Query=url,qq
+
+
+
+

@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class SysUser {
 
     @TableId(type = IdType.INPUT)
-    private Long userId;
+    private String userId;
 
     private String username;
 
