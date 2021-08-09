@@ -1,3 +1,0 @@
-userReceiveFilter=top.b0x0.cloud.alibaba.user.filter.DownStreamFilter
-authReceiveFilter=top.b0x0.cloud.alibaba.auth.filter.DownStreamFilter
-orderReceiveFilter=top.b0x0.cloud.alibaba.order.filter.UpStreamFilter

@@ -6,6 +6,7 @@
         <artifactId>alibaba-rpc-sample</artifactId>
         <groupId>top.b0x0.cloud.alibaba</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

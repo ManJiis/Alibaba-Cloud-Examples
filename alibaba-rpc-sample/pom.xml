@@ -72,5 +72,14 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    <!-- SpringBoot 工程编译打包的插件，放在父pom中就直接给所有子工程继承 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

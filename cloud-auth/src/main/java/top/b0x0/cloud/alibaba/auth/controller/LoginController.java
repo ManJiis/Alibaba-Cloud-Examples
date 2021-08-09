@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020/11/10
  */
 @RestController
-//@RequestMapping("/auth")
+@RequestMapping("/auth")
 public class LoginController {
 
 

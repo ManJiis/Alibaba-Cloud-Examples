@@ -2,7 +2,7 @@ package top.b0x0.cloud.alibaba.auth.service;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.rpc.RpcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import top.b0x0.cloud.alibaba.api.IEchoService;
  * @since 2021-07-16
  * @since 1.8
  */
-@Service(version = "${service.version}", group = "b0x0-cloud-auth")
+@DubboService(version = "${service.version}", group = "b0x0-cloud-auth")
 @Component
 public class EchoServiceImpl implements IEchoService {
     private static final Logger log = LoggerFactory.getLogger(EchoServiceImpl.class);
@@ -26,10 +26,9 @@ public class EchoServiceImpl implements IEchoService {
      * @return /
      */
     @Override
-//    @SentinelResource(value = "auth#EchoServiceImpl#sayHello", blockHandler = "exceptionHandler", blockHandlerClass = ExceptionUtil.class, fallback = "helloFallback", defaultFallback = "defaultFallback", exceptionsToIgnore = {})
-//    @SentinelResource(value = "auth#EchoServiceImpl#sayHello", blockHandler = "exceptionHandler", blockHandlerClass = ExceptionUtil.class)
     @SentinelResource(value = "auth#EchoServiceImpl#sayHello", fallback = "sayHelloFallback")
     public String sayHello(String param) {
+        System.out.println("auth#EchoServiceImpl#sayHello： " + param);
         if ("error".equals(param)) {
             throw new RpcException("error oops...");
         }
@@ -70,7 +69,7 @@ public class EchoServiceImpl implements IEchoService {
         return "default_fallback";
     }
 
-    @SentinelResource(value = "EchoServiceImpl#bonjour", defaultFallback = "bonjourFallback")
+    @SentinelResource(value = "auth#EchoServiceImpl#bonjour", defaultFallback = "bonjourFallback")
     @Override
     public String bonjour(String name) {
         return "Bonjour, " + name;

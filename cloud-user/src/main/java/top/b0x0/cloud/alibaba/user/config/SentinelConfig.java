@@ -23,4 +23,10 @@ public class SentinelConfig {
         return new SentinelResourceAspect();
     }
 
+    @Bean
+    public MyBlockExceptionHandler webCallbackManager() {
+        MyBlockExceptionHandler myBlockExceptionHandler = new MyBlockExceptionHandler();
+        return myBlockExceptionHandler;
+    }
+
 }

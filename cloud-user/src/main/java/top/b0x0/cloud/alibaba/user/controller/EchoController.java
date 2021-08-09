@@ -9,6 +9,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import top.b0x0.cloud.alibaba.api.IEchoService;
@@ -26,7 +27,7 @@ import java.util.List;
  * @since jdk1.8
  */
 @RestController
-//@RequestMapping("/user")
+@RequestMapping("/user")
 public class EchoController {
     private final Logger log = LoggerFactory.getLogger(EchoController.class);
 

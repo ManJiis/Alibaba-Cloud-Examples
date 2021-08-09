@@ -1,7 +1,22 @@
 server:
   port: 8090
-  servlet:
-    context-path: /order
+#  servlet:
+#    context-path: /order
+# Spring Boot Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # * 所有端点， beans, env, health 可以配置Endpoint IDs,其他都关闭
+  endpoint:
+    health:
+      show-details: ALWAYS
+# arthas client 配置
+arthas.appName: ${spring.application.name}
+arthas.agent-id: agent_order # 命名中不能有-
+arthas.tunnel-server: ws://127.0.0.1:7777/ws
+arthas.telnetPort: -1
+arthas.httpPort: -1
 spring:
   application:
     name: b0x0-cloud-order
@@ -11,20 +26,28 @@ spring:
     nacos:
       username: nacos
       password: nacos
-      server-addr: 127.0.0.1:8848
+#      server-addr: 127.0.0.1:8848
       discovery:
         enabled: true
         register-enabled: true
-#        server-addr: 127.0.0.1:8848
+        server-addr: 127.0.0.1:8848
         ephemeral: true # false为永久实例，true表示临时实例，注册为临时实例, 默认即为临时实例
-        cluster-name: order-cluster  #集群名称
+        cluster-name: cloud-order-cluster  #集群名称
         namespace: c1affcc0-0e86-4530-875d-2153faf4eced  # 命名空间 只能是uuid
       config:
-#        server-addr: 127.0.0.1:8848  # nacos配置中心地址
+        server-addr: 127.0.0.1:8848  # nacos配置中心地址
         namespace: c1affcc0-0e86-4530-875d-2153faf4eced   # 命名空间 只能是uuid
         group: alibaba-cloud-examples
         file-extension: yaml  #配置文件的后缀名
         refresh-enabled: true  #默认true：自动刷新
+    sentinel:
+      # 取消Sentinel控制台懒加载
+      # 默认情况下 Sentinel 会在客户端首次调用的时候进行初始化，开始向控制台发送心跳包
+      # 配置 sentinel.eager=true 时，取消Sentinel控制台懒加载功能
+      eager: true
+      transport:
+        port: 8719 # 用于将限流规则注册到 Sentinel 中。
+        dashboard: 127.0.0.1:8888 # Sentinel 控制台地址
 dubbo:
   cloud:
     # The subscribed services in consumer side

@@ -19,7 +19,13 @@ public enum BusinessMsgEnum {
     /**
      * 500 : 发生异常
      */
-    UNEXPECTED_EXCEPTION(500, "服务器开小差了,请稍后重试!");
+    UNEXPECTED_EXCEPTION(500, "服务器开小差了,请稍后重试!"),
+    SENTINEL_FLOW_LIMITING_EXCEPTION(500, "流控规则异常处理"),
+    SENTINEL_DEGRADE_EXCEPTION(500, "服务降级异常处理"),
+    SENTINEL_AUTHORITY_EXCEPTION(500, "处理流量控制异常处理"),
+    SENTINEL_PARAM_FLOW_EXCEPTION(500, "处理流量控制异常处理"),
+    SENTINEL_SYSTEM_BLOCK_EXCEPTION(500, "处理流量控制异常处理"),
+    ;
 
     /**
      * 消息码

@@ -43,7 +43,7 @@ public class B0x0CloudTokenFilter implements GlobalFilter, Ordered {
 
     final static String TOKEN = "token";
 
-    //    @Override
+    @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest serverHttpRequest = exchange.getRequest();
         ServerHttpResponse serverHttpResponse = exchange.getResponse();
@@ -95,7 +95,7 @@ public class B0x0CloudTokenFilter implements GlobalFilter, Ordered {
         return serverHttpResponse.writeWith(Flux.just(dataBuffer));
     }
 
-    //    @Override
+    @Override
     public int getOrder() {
         return -100;
     }

@@ -1,29 +1,43 @@
 server:
   port: 8091
-  servlet:
-    context-path: /user
+#  servlet:
+#    context-path: /user
+# Spring Boot Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # * 所有端点， beans, env, health 可以配置Endpoint IDs,其他都关闭
+  endpoint:
+    health:
+      show-details: ALWAYS
+# arthas client 配置
+arthas.appName: ${spring.application.name}
+arthas.agent-id: agent_user # 命名中不能有-
+arthas.tunnel-server: ws://127.0.0.1:7777/ws
+arthas.telnetPort: -1
+arthas.httpPort: -1
 spring:
   application:
     name: b0x0-cloud-user
   main:
     allow-bean-definition-overriding: true
-
   cloud:
     nacos:
       username: nacos
       password: nacos
-      server-addr: 127.0.0.1:8848
+      #      server-addr: 127.0.0.1:8848
       # Nacos 服务发现与注册配置
       discovery:
         enabled: true
         register-enabled: true
-#        server-addr: 127.0.0.1:8848
+        server-addr: 127.0.0.1:8848
         ephemeral: true # false为永久实例，true表示临时实例，注册为临时实例, 默认即为临时实例
-        cluster-name: user-cluster  #集群名称
+        cluster-name: cloud-user-cluster  #集群名称
         namespace: c1affcc0-0e86-4530-875d-2153faf4eced  # 命名空间 只能是uuid
       # Nacos 配置中心
       config:
-#        server-addr: 127.0.0.1:8848  # nacos配置中心地址
+        server-addr: 127.0.0.1:8848  # nacos配置中心地址
         group: alibaba-cloud-examples
         namespace: c1affcc0-0e86-4530-875d-2153faf4eced   # 命名空间 只能是uuid
         file-extension: yaml  #配置文件的后缀名
@@ -34,9 +48,18 @@ spring:
       # 配置 sentinel.eager=true 时，取消Sentinel控制台懒加载功能
       eager: true
       transport:
-        # Sentinel 控制台地址
-        dashboard: 127.0.0.1:8888
-
+        port: 8719 # 用于将限流规则注册到 Sentinel 中。
+        dashboard: 127.0.0.1:8888 # Sentinel 控制台地址
+      #      log:
+      #        dir: ${logging.file.path}/sentinel/
+      datasource:
+        ds:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            data-id: ${spring.application.name}-flow-rules # data-id一定要以-flow-rules为结尾、group-id为SENTINEL_GROUP，sentinel管理后台就是这种命名规范
+            data-type: json
+            group-id: SENTINEL_GROUP
+            rule-type: flow
 dubbo:
   cloud:
     # The subscribed services in consumer side
@@ -66,4 +89,6 @@ dubbo:
 
 feign:
   hystrix:
+    enabled: false
+  sentinel:
     enabled: false

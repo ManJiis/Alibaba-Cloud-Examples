@@ -36,9 +36,8 @@ public class SentinelConfig {
         return (request, response, e) -> {
             // 429 Too Many Requests
             response.setStatus(429);
-
             PrintWriter out = response.getWriter();
-            out.print("Oops, blocked by Sentinel: " + e.getClass().getSimpleName());
+            out.print("[B0x0-Cloud] Oops, blocked by Sentinel: " + e.getClass().getSimpleName());
             out.flush();
             out.close();
         };

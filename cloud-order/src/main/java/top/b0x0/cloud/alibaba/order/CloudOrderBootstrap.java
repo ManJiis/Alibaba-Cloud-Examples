@@ -1,6 +1,5 @@
 package top.b0x0.cloud.alibaba.order;
 
-import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ import java.util.HashMap;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients
-@EnableDubbo
+// @EnableDubbo
 @EnableScheduling
 public class CloudOrderBootstrap {
     private static final Logger log = LoggerFactory.getLogger(CloudOrderBootstrap.class);

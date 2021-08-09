@@ -1,6 +1,6 @@
 package top.b0x0.cloud.alibaba.order.controller;
 
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,16 +17,16 @@ import top.b0x0.cloud.alibaba.order.client.UserClient;
  * @date 2020/11/10
  */
 @RestController
-@RequestMapping("/echo")
+@RequestMapping("/order/echo")
 public class EchoController {
 
-    @Reference(version = "${service.version}", group = "b0x0-cloud-user")
+    @DubboReference(version = "${service.version}", group = "b0x0-cloud-user")
     private IEchoService userEchoService;
 
-    @Reference(version = "${service.version}", group = "b0x0-cloud-auth")
+    @DubboReference(version = "${service.version}", group = "b0x0-cloud-auth")
     private IEchoService authEchoService;
 
-    @Reference(version = "${service.version}")
+    @DubboReference(version = "${service.version}")
     private IAuthService authService;
 
     @Autowired
@@ -40,13 +40,13 @@ public class EchoController {
         return R.ok(authService.isDefaultUser(name));
     }
 
-    @GetMapping("user")
+    @GetMapping("userEchoService")
     public R userEcho(String name) {
         System.out.println("userEchoService = " + userEchoService);
         return R.ok(userEchoService.sayHello(name));
     }
 
-    @GetMapping("auth")
+    @GetMapping("authEchoService")
     public R authEcho(String name) {
         System.out.println("authEchoService = " + authEchoService);
         return R.ok(authEchoService.sayHello(name));

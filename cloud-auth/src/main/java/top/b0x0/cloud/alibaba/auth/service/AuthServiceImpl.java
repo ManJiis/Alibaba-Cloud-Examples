@@ -1,6 +1,6 @@
 package top.b0x0.cloud.alibaba.auth.service;
 
-import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Component;
 import top.b0x0.cloud.alibaba.api.auth.IAuthService;
 
@@ -9,7 +9,7 @@ import top.b0x0.cloud.alibaba.api.auth.IAuthService;
  * @since 2021-08-05
  * @since JDK1.8
  */
-@Service(version = "${service.version}")
+@DubboService(version = "${service.version}")
 @Component
 public class AuthServiceImpl implements IAuthService {
 

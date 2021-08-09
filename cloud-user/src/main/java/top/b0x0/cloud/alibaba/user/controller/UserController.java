@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.b0x0.cloud.alibaba.api.IUserService;
 import top.b0x0.cloud.alibaba.common.vo.R;
@@ -15,7 +16,7 @@ import java.util.List;
  * @date 2021-08-5
  */
 @RestController
-//@RequestMapping("/user")
+@RequestMapping("/user")
 public class UserController {
 
     //    @DubboReference(version = "${service.version}")

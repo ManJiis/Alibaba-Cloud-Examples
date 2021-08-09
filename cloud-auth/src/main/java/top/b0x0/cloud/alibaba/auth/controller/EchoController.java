@@ -1,6 +1,8 @@
 package top.b0x0.cloud.alibaba.auth.controller;
 
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,15 +15,15 @@ import top.b0x0.cloud.alibaba.common.vo.R;
  * @date 2020/11/10
  */
 @RestController
-@RequestMapping("/echo")
+@RequestMapping("/auth/echo")
 public class EchoController {
 
-    @Reference(version = "${service.version}", group = "b0x0-cloud-user")
-//    @Autowired
+    @DubboReference(version = "${service.version}", group = "b0x0-cloud-user")
     private IEchoService userEchoService;
 
-    //        @Reference(version = "${service.version}", group = "b0x0-cloud-auth")
-//    @Autowired
+    //@DubboReference(version = "${service.version}", group = "b0x0-cloud-auth")
+    @Autowired
+    @Qualifier("echoServiceImpl")
     private IEchoService authEchoService;
 
     @GetMapping("authSayHello")
