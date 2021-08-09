@@ -48,7 +48,16 @@
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
 ```
+5. Java诊断工具
+```xml
+        <dependency>
+            <groupId>com.taobao.arthas</groupId>
+            <artifactId>arthas-spring-boot-starter</artifactId>
+        </dependency>
+```
+
 ## 模块实现
+
 nacos版本: 1.3.1
 
 **cloud-gateway**：网关服务，负责请求转发和鉴权功能，整合JWT；
