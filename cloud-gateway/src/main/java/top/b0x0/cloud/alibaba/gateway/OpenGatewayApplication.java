@@ -33,7 +33,7 @@ public class OpenGatewayApplication {
             String userAge = applicationContext.getEnvironment().getProperty("user.age");
 
             //获取当前部署的环境
-            String currentEnv = applicationContext.getEnvironment().getProperty("current.env");
+            String currentEnv = applicationContext.getEnvironment().getProperty("spring.profiles.active");
             System.err.println("in " + currentEnv + " enviroment; " + "user name :" + userName + "; age: " + userAge);
 
             HashMap<String, String> hashMap = new HashMap<>(8);

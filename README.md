@@ -133,7 +133,7 @@ arthas.httpPort: -1
    下载地址: https://github.com/alibaba/arthas/releases
    使用如下命令启动
 ```shell
-java -jar arthas-tunnel-server.jar --server.port=8887
+java -Dserver.port=8887 -Xms=500m -Xmx=500m -jar arthas-tunnel-server-3.5.3-fatjar.jar 
 ```
 > arthas agent 连接的端口是7777，是注册端口，远程服务器的 arthas 通过该端口注册到 tunnel-server。
 > 默认情况下，arthas tunnel server的web端口是8080。
@@ -164,14 +164,29 @@ Sentinel 控制台包含如下功能:
 下载地址： https://handson.oss-cn-shanghai.aliyuncs.com/sentinel-dashboard-1.8.0.jar
 
 使用如下命令启动控制台：
+
 ```shell
-java -jar --server.port=8888 sentinel-dashboard-1.8.0.jar  
+java -Dserver.port=8888 -Xms=500m -Xmx=500m -jar  sentinel-dashboard-1.8.0.jar  
 ```
+
 > 注意：启动 Sentinel 控制台需要 JDK 版本为 1.8 及以上版本。
 
 访问地址： http://127.0.0.1:8888/#/dashboard
 
 默认账号密码： sentinel / sentinel
 
+# 访问地址
+
+Nacos
+
+- http://localhost:8848/nacos/index.html
+
+Arthas tunnel server
+
+- http://localhost:8887/apps.html
+
+Sentinel
+
+- http://127.0.0.1:8888/#/dashboard
 
 

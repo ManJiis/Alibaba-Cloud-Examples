@@ -23,9 +23,20 @@ import java.util.HashMap;
 @EnableScheduling
 public class CloudAuthBootstrap {
 
+    static {
+        // 配置中心的缓存是一个容灾目录，在服务端不可用时，会读取客户端本地配置，如果禁用缓存，会失去容灾功能，这个点需要评估好；
+        // 可以通过设置静态变量关闭缓存SnapShotSwitch.setIsSnapShot(false);
+//        SnapShotSwitch.setIsSnapShot(false);
+
+        // 服务注册缓存
+        // https://lexburner.github.io/dubbo-nacos-stability/
+        // -DnamingLoadCacheAtStart=false
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(CloudAuthBootstrap.class, args);
     }
+
 
     @RestController
     @RequestMapping("/config")
@@ -40,7 +51,7 @@ public class CloudAuthBootstrap {
             String userAge = applicationContext.getEnvironment().getProperty("user.age");
 
             //获取当前部署的环境
-            String currentEnv = applicationContext.getEnvironment().getProperty("current.env");
+            String currentEnv = applicationContext.getEnvironment().getProperty("spring.profiles.active");
             System.err.println("in " + currentEnv + " enviroment; " + "user name :" + userName + "; age: " + userAge);
 
             HashMap<String, String> hashMap = new HashMap<>(8);
