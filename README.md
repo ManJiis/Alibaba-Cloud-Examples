@@ -60,13 +60,12 @@
 
 nacos版本: 1.3.1
 
-**cloud-gateway**：网关服务，负责请求转发和鉴权功能，整合JWT；
-
-**cloud-auth** 8092：认证服务，负责对登录用户进行认证，整合JWT；
-
-**cloud-user**：受保护的API服务，用户鉴权通过后可以访问该服务，不整合JWT；
-
-**cloud-order**：受保护的API服务，用户鉴权通过后可以访问该服务，不整合JWT；
+| 模块 | 描述 | 端口 |
+| --- | --- | --- |
+| **cloud-gateway**  | 网关服务，负责请求转发和鉴权功能，整合JWT；               |   8093| 
+| **cloud-auth**     | 认证服务，负责对登录用户进行认证，整合JWT；                |   8092| 
+| **cloud-user**     | 受保护的API服务，用户鉴权通过后可以访问该服务，不整合JWT； |  8091| 
+| **cloud-order**    | 受保护的API服务，用户鉴权通过后可以访问该服务，不整合JWT； |  8090|
 
 ![流程图](admin_docs/images/Alibaba-Cloud-Examples.png)
 
