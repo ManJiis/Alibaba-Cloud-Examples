@@ -104,11 +104,11 @@
                 <version>${dubbo.version}</version>
             </dependency>
             <!-- nacos -->
-<!--            <dependency>
-                <groupId>com.alibaba.nacos</groupId>
-                <artifactId>nacos-client</artifactId>
-                <version>${nacos.version}</version>
-            </dependency>-->
+            <!--            <dependency>
+                            <groupId>com.alibaba.nacos</groupId>
+                            <artifactId>nacos-client</artifactId>
+                            <version>${nacos.version}</version>
+                        </dependency>-->
 
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -180,6 +180,50 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <repositories>
+
+
+        <repository>
+            <id>gridgainsystems</id>
+            <name>gridgainsystems</name>
+            <url>http://www.gridgainsystems.com/nexus/content/repositories/external/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+
+        <repository>
+            <id>nexus-aliyun</id>
+            <name>Nexus aliyun</name>
+            <layout>default</layout>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+
+        <!--
+                <repository>
+                    <id>spring-snapshot</id>
+                    <name>Spring Snapshot Repository</name>
+                    <url>https://repo.spring.io/snapshot</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+                -->
+        <repository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </repositories>
 
     <!-- SpringBoot 工程编译打包的插件，放在父pom中就直接给所有子工程继承 -->
     <build>
