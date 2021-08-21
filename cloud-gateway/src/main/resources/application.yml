@@ -2,8 +2,24 @@ spring:
   profiles:
     include: dbConfig
     active: dev
+# 自定义配置
 b0x0:
   gateway:
-    tokenFilter:
-      whiteList: /auth/login,/user/list,/auth/echo
-
+    # spring boot 2.x.x对自定义配置命名做了强制约束，不能使用java中的驼峰式写法了，分隔符使用 ’-‘ 来分隔
+    token-filter:
+      # 资源白名单
+      white-list:
+        - /auth/login
+        - /user/list
+        - /auth/echo
+        - /swagger-ui.html
+        - /swagger-resources/**
+        - /swagger/**
+        - /**/v2/api-docs
+        - /**/*.js
+        - /**/*.css
+        - /**/*.png
+        - /**/*.ico
+        - /webjars/springfox-swagger-ui/**
+        - /actuator/**
+        - /druid/**

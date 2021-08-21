@@ -14,10 +14,10 @@ import java.util.HashMap;
  * @author ManJiis
  */
 @SpringBootApplication
-public class OpenGatewayApplication {
+public class CloudGatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OpenGatewayApplication.class, args);
+        SpringApplication.run(CloudGatewayApplication.class, args);
     }
 
     @RestController

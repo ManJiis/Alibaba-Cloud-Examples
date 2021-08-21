@@ -2,6 +2,7 @@ server:
   port: 8093
 #  servlet:
 #    context-path: /gateway
+
 # Spring Boot Actuator
 management:
   endpoints:
@@ -11,20 +12,21 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
 # arthas client 配置
 arthas.appName: ${spring.application.name}
 arthas.agent-id: agent_gateway # 命名中不能有-
 arthas.tunnel-server: ws://127.0.0.1:7777/ws
 arthas.telnetPort: -1
 arthas.httpPort: -1
+
 spring:
   application:
     name: b0x0-cloud-gateway
   main:
     allow-bean-definition-overriding: true
-
-  # default disable all
   cloud:
+    # 服务注册与发现 / 配置中心
     nacos:
       username: nacos
       password: nacos
@@ -50,8 +52,24 @@ spring:
       transport:
         port: 8719 # 用于将限流规则注册到 Sentinel 中。
         dashboard: 127.0.0.1:8888 # Sentinel 控制台地址
-
+    # 网关
     gateway:
+      # 处理响应头重复
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            # 这里有个allowCredentials: true这个东西是设置允许访问携带cookie的，这点一定要和前端对应！
+            allowCredentials: true
+            # 可以填写多个域名用","隔开 例如 "*"代表允许所有
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allow-credentials: true
+      discovery:
+        locator:
+          # 是否与服务发现组件进行结合，通过 serviceId 转发到具体的服务实例。默认为false
+          enabled: true
+          lower-case-service-id: true #使用小写service-id
       routes: # 路由数组[路由 就是指定当请求满足什么条件的时候转到哪个微服务]
         - id: user-service-api          # 当前路由的标识, 要求唯一
           uri: lb://b0x0-cloud-user  # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略

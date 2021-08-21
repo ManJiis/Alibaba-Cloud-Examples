@@ -35,4 +35,9 @@ public class EchoController {
     public R userSayHello(@RequestParam("name") String name) {
         return R.ok(userEchoService.sayHello(name));
     }
+
+    @GetMapping("userThenAuthSayHello")
+    public R userThenAuthSayHello(@RequestParam("name") String name) {
+        return R.ok(authEchoService.userThenAuthSayHello(name));
+    }
 }

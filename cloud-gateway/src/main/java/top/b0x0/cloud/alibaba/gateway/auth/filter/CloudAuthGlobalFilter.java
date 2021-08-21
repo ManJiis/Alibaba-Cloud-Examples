@@ -1,4 +1,4 @@
-package top.b0x0.cloud.alibaba.gateway.auth;
+package top.b0x0.cloud.alibaba.gateway.auth.filter;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
@@ -10,6 +10,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
@@ -17,26 +18,32 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import top.b0x0.cloud.alibaba.common.exception.TokenAuthenticationException;
+import top.b0x0.cloud.alibaba.common.util.JWTUtil;
 import top.b0x0.cloud.alibaba.common.util.constant.AuthRedisKey;
 import top.b0x0.cloud.alibaba.common.vo.ResponseCodeEnum;
 import top.b0x0.cloud.alibaba.common.vo.ResponseResult;
-import top.b0x0.cloud.alibaba.common.exception.TokenAuthenticationException;
-import top.b0x0.cloud.alibaba.common.util.JWTUtil;
+import top.b0x0.cloud.alibaba.gateway.auth.config.WhiteListConfig;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author ManJiis
  * @date 2020/11/10
  */
 @Component
-public class B0x0CloudTokenFilter implements GlobalFilter, Ordered {
+public class CloudAuthGlobalFilter implements GlobalFilter, Ordered {
+
+    @Autowired
+    private WhiteListConfig whiteListConfig;
+
+//    @Value("#{'${b0x0.gateway.tokenFilter.whiteList}'.split(',')}")
+//    private List<String> whiteList;
+
 
     @Value("${secretKey:123456}")
     private String secretKey;
-
-    @Value("#{'${b0x0.gateway.tokenFilter.whiteList}'.split(',')}")
-    private List<String> whiteList;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -47,10 +54,17 @@ public class B0x0CloudTokenFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest serverHttpRequest = exchange.getRequest();
         ServerHttpResponse serverHttpResponse = exchange.getResponse();
-        String uri = serverHttpRequest.getURI().getPath();
 
+        ServerHttpRequest request = exchange.getRequest();
+
+        //防止 OPTIONS 请求直接放行
+        if (Objects.equals(request.getMethod(), HttpMethod.OPTIONS)) {
+            return chain.filter(exchange);
+        }
+        String uri = serverHttpRequest.getURI().getPath();
         //  检查白名单（配置）
-        if (whiteList.contains(uri)) {
+        List<String> whiteUrl = whiteListConfig.getWhiteList();
+        if (whiteUrl.contains(uri)) {
             System.out.println("白名单uri = " + uri);
             return chain.filter(exchange);
         }

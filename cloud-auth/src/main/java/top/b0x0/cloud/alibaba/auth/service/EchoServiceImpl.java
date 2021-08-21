@@ -2,12 +2,16 @@ package top.b0x0.cloud.alibaba.auth.service;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.alibaba.fastjson.JSON;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.rpc.RpcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import top.b0x0.cloud.alibaba.api.IEchoService;
+import top.b0x0.cloud.alibaba.api.IUserService;
+import top.b0x0.cloud.alibaba.common.vo.res.UserRes;
 
 /**
  * @author ManJiis
@@ -18,6 +22,21 @@ import top.b0x0.cloud.alibaba.api.IEchoService;
 @Component
 public class EchoServiceImpl implements IEchoService {
     private static final Logger log = LoggerFactory.getLogger(EchoServiceImpl.class);
+
+    @DubboReference(version = "${service.version}")
+    private IUserService userService;
+
+    @Override
+    @SentinelResource(value = "auth#EchoServiceImpl#userThenAuthSayHello", fallback = "userThenAuthSayHelloFallback")
+    public String userThenAuthSayHello(String param) {
+        UserRes userRes = userService.findUser();
+        int i = 1 / 0;
+        return JSON.toJSONString(userRes.toString());
+    }
+
+    public String userThenAuthSayHelloFallback(String param, Throwable ex) {
+        return JSON.toJSONString(ex.getMessage());
+    }
 
     /**
      * 原函数
