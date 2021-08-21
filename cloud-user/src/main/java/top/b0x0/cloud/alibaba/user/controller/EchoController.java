@@ -4,20 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import top.b0x0.cloud.alibaba.api.IEchoService;
-import top.b0x0.cloud.alibaba.common.util.ServiceList;
 import top.b0x0.cloud.alibaba.common.vo.R;
-
-import java.net.URI;
-import java.util.List;
 
 /**
  * 回声测试
@@ -72,7 +64,7 @@ public class EchoController {
         return R.ok("say hello : " + name);
     }
 
-    @Autowired
+/*    @Autowired
     private LoadBalancerClient loadBalancerClient;
 
     @Autowired
@@ -81,9 +73,7 @@ public class EchoController {
     @Value("${spring.application.name}")
     private String currentAppName;
 
-    /**
-     * 获取注册中心数据对象
-     */
+    //获取注册中心数据对象
     @Autowired
     private DiscoveryClient discoveryClient;
 
@@ -130,4 +120,5 @@ public class EchoController {
         log.info("nacosDiscoveryEnabled: {}", nacosDiscoveryEnabled);
         return "spring.cloud.nacos.discovery.enabled :" + nacosDiscoveryEnabled;
     }
+ */
 }

@@ -30,7 +30,7 @@ public class EchoServiceImpl implements IEchoService {
     @SentinelResource(value = "auth#EchoServiceImpl#userThenAuthSayHello", fallback = "userThenAuthSayHelloFallback")
     public String userThenAuthSayHello(String param) {
         UserRes userRes = userService.findUser();
-        int i = 1 / 0;
+//        int i = 1 / 0;
         return JSON.toJSONString(userRes.toString());
     }
 

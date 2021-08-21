@@ -24,7 +24,6 @@
             <groupId>top.b0x0.cloud.alibaba</groupId>
             <artifactId>cloud-common</artifactId>
             <version>${revision}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>

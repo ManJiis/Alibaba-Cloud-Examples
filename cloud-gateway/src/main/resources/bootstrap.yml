@@ -3,23 +3,6 @@ server:
 #  servlet:
 #    context-path: /gateway
 
-# Spring Boot Actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"  # * 所有端点， beans, env, health 可以配置Endpoint IDs,其他都关闭
-  endpoint:
-    health:
-      show-details: ALWAYS
-
-# arthas client 配置
-arthas.appName: ${spring.application.name}
-arthas.agent-id: agent_gateway # 命名中不能有-
-arthas.tunnel-server: ws://127.0.0.1:7777/ws
-arthas.telnetPort: -1
-arthas.httpPort: -1
-
 spring:
   application:
     name: b0x0-cloud-gateway
@@ -97,6 +80,23 @@ spring:
           uri: https://www.qq.com
           predicates:
             - Query=url,qq
+
+# Spring Boot Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # * 所有端点， beans, env, health 可以配置Endpoint IDs,其他都关闭
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+# arthas client 配置
+arthas.appName: ${spring.application.name}
+arthas.agent-id: agent_gateway # 命名中不能有-
+arthas.tunnel-server: ws://127.0.0.1:7777/ws
+arthas.telnetPort: -1
+arthas.httpPort: -1
 
 
 

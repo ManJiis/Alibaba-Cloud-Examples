@@ -1,8 +1,9 @@
 package top.b0x0.cloud.alibaba.user.service;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import top.b0x0.cloud.alibaba.api.IUserService;
 import top.b0x0.cloud.alibaba.common.vo.res.UserRes;
@@ -12,9 +13,8 @@ import top.b0x0.cloud.alibaba.common.vo.res.UserRes;
  */
 @DubboService(version = "${service.version}")
 @Component
-@Slf4j
 public class UserServiceImpl implements IUserService {
-
+    private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
     public UserRes findUser() {

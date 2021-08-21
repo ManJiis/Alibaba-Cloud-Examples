@@ -2,21 +2,7 @@ server:
   port: 8092
 #  servlet:
 #    context-path: /auth
-# Spring Boot Actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"  # * 所有端点， beans, env, health 可以配置Endpoint IDs,其他都关闭
-  endpoint:
-    health:
-      show-details: ALWAYS
-# arthas client 配置
-arthas.appName: ${spring.application.name}
-arthas.agent-id: agent_auth # 命名中不能有-
-arthas.tunnel-server: ws://127.0.0.1:7777/ws
-arthas.telnetPort: -1
-arthas.httpPort: -1
+
 spring:
   application:
     name: b0x0-cloud-auth
@@ -84,6 +70,22 @@ dubbo:
 feign:
   hystrix:
     enabled: false
+
+# Spring Boot Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # * 所有端点， beans, env, health 可以配置Endpoint IDs,其他都关闭
+  endpoint:
+    health:
+      show-details: ALWAYS
+# arthas client 配置
+arthas.appName: ${spring.application.name}
+arthas.agent-id: agent_auth # 命名中不能有-
+arthas.tunnel-server: ws://127.0.0.1:7777/ws
+arthas.telnetPort: -1
+arthas.httpPort: -1
 
 
 

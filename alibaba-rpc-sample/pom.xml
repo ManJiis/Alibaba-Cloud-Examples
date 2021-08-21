@@ -11,9 +11,9 @@
     <version>${revision}</version>
 
     <modules>
-        <module>provide-sample</module>
-        <module>provide2-sample</module>
-        <module>client-sample</module>
+        <module>sample-provide1</module>
+        <module>sample-provide2</module>
+        <module>sample-client</module>
         <module>sample-common</module>
     </modules>
 
@@ -33,8 +33,8 @@
         <dubbo.version>2.7.8</dubbo.version>
         <nacos.version>1.3.1</nacos.version>
 
-
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 
 /**
+ * 模拟多实例 VMoptions：-Dserver.port=8089 -Xms500m -Xmx500m
+ *
  * @author ManJiis
  */
 @EnableDiscoveryClient

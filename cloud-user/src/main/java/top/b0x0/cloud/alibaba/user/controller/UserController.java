@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    //    @DubboReference(version = "${service.version}")
     @Autowired
     private IUserService userService;
 
