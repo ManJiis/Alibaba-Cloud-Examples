@@ -1,12 +1,11 @@
 server:
-  port: 8091
+  port: 8099
 #  servlet:
-#    context-path: /user
-# Spring Boot Actuator
+#    context-path: /file
 
 spring:
   application:
-    name: b0x0-cloud-user
+    name: b0x0-cloud-file
   main:
     allow-bean-definition-overriding: true
   cloud:
@@ -20,7 +19,7 @@ spring:
         register-enabled: true
         server-addr: 127.0.0.1:8848
         ephemeral: true # false为永久实例，true表示临时实例，注册为临时实例, 默认即为临时实例
-        cluster-name: cloud-user-cluster  #集群名称
+        cluster-name: cloud-file-cluster  #集群名称
         namespace: c1affcc0-0e86-4530-875d-2153faf4eced  # 命名空间 只能是uuid
       # Nacos 配置中心
       config:
@@ -43,17 +42,17 @@ spring:
         ds:
           nacos:
             server-addr: 127.0.0.1:8848
-            data-id: b0x0-cloud-user-flow-rules # data-id一定要以-flow-rules为结尾、group-id为SENTINEL_GROUP，sentinel管理后台就是这种命名规范
+            data-id: b0x0-cloud-file-flow-rules # data-id一定要以-flow-rules为结尾、group-id为SENTINEL_GROUP，sentinel管理后台就是这种命名规范
             data-type: json
             group-id: SENTINEL_GROUP
             rule-type: flow
 dubbo:
   cloud:
     # The subscribed services in consumer side
-    subscribed-services: b0x0-cloud-order,b0x0-cloud-auth
+    subscribed-services: b0x0-cloud-order,b0x0-cloud-auth,b0x0-cloud-user
   scan:
     # dubbo 服务扫描基准包
-    base-packages: top.b0x0.cloud.alibaba.user.service
+    base-packages: top.b0x0.cloud.alibaba.file.service
   registry:
     #dubbo服务注册端口，注册中心服务器地址，如果地址没有端口缺省为9090，同一集群内的多个地址用逗号分隔，如：ip:port,ip:port
     #其中前缀spring-cloud说明：挂载到 Spring Cloud注册中心
@@ -80,6 +79,7 @@ feign:
   sentinel:
     enabled: false
 
+# Spring Boot Actuator
 management:
   endpoints:
     web:
@@ -89,8 +89,8 @@ management:
     health:
       show-details: ALWAYS
 # arthas client 配置
-arthas.appName: b0x0-cloud-user
-arthas.agent-id: arthas_agent_user # 命名中不能有-
+arthas.appName: b0x0-cloud-file
+arthas.agent-id: arthas_agent_file # 命名中不能有-
 arthas.tunnel-server: ws://127.0.0.1:7777/ws
 arthas.telnetPort: -1
 arthas.httpPort: -1

@@ -5,7 +5,7 @@
 
     <artifactId>cloud-auth</artifactId>
     <version>${revision}</version>
-    <name>cloud-auth</name>
+    <name>Alibaba Cloud Service Auth</name>
 
     <description>Spring Cloud Alibaba Provider Auth</description>
 

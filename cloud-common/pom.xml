@@ -5,7 +5,7 @@
 
     <artifactId>cloud-common</artifactId>
     <version>${revision}</version>
-    <name>cloud-common</name>
+    <name>Alibaba Cloud Common</name>
 
     <description>Spring Cloud Alibaba Common</description>
 

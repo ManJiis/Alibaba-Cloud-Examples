@@ -54,13 +54,14 @@
     </properties>
 
     <modules>
-        <module>cloud-config-center</module>
+        <module>cloud-test</module>
         <module>cloud-common-api</module>
         <module>cloud-common</module>
         <module>cloud-user</module>
         <module>cloud-auth</module>
         <module>cloud-order</module>
         <module>cloud-gateway</module>
+        <module>cloud-file</module>
     </modules>
 
     <dependencyManagement>

@@ -1,4 +1,4 @@
-package top.b0x0.cloud.alibaba.configcenter;
+package top.b0x0.cloud.alibaba.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,10 +19,10 @@ import java.util.HashMap;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableScheduling
-public class CloudConfigCenterApplication {
+public class CloudTestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CloudConfigCenterApplication.class, args);
+        SpringApplication.run(CloudTestApplication.class, args);
     }
 
     @RestController

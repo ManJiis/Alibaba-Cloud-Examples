@@ -4,7 +4,7 @@ server:
     context-path: /configCenter
 spring:
   application:
-    name: b0x0-cloud-config-center
+    name: b0x0-cloud-test
   cloud:
     nacos:
       username: nacos

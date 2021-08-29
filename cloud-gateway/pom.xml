@@ -10,7 +10,7 @@
 
     <artifactId>cloud-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cloud-gateway</name>
+    <name>Alibaba Cloud Service Gateway</name>
 
     <description>Demo project for Spring Boot</description>
 

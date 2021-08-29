@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-config-center</artifactId>
+    <artifactId>cloud-test</artifactId>
     <version>${revision}</version>
-    <name>cloud-config-center</name>
+    <name>Alibaba Cloud Service Test</name>
 
     <description>Spring Cloud Alibaba Config Center</description>
 
@@ -36,10 +36,10 @@
         </dependency>
 
         <!-- arthas client -->
-<!--        <dependency>
-            <groupId>com.taobao.arthas</groupId>
-            <artifactId>arthas-spring-boot-starter</artifactId>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>com.taobao.arthas</groupId>
+                    <artifactId>arthas-spring-boot-starter</artifactId>
+                </dependency>-->
         <!-- actuator -->
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>
@@ -77,7 +77,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>top.b0x0.cloud.alibaba.configcenter.CloudConfigCenterApplication</mainClass>
+                    <mainClass>top.b0x0.cloud.alibaba.test.CloudTestApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

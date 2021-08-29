@@ -10,7 +10,7 @@
 
     <artifactId>cloud-common-api</artifactId>
     <version>${revision}</version>
-    <name>${artifactId}</name>
+    <name>Alibaba Cloud Common Api</name>
 
     <description>api</description>
 

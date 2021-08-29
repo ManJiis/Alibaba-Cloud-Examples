@@ -93,7 +93,7 @@ management:
 
 # arthas client 配置
 arthas.appName: ${spring.application.name}
-arthas.agent-id: agent_gateway # 命名中不能有-
+arthas.agent-id: arthas_agent_gateway # 命名中不能有-
 arthas.tunnel-server: ws://127.0.0.1:7777/ws
 arthas.telnetPort: -1
 arthas.httpPort: -1

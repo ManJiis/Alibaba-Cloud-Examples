@@ -5,7 +5,7 @@
 
     <artifactId>cloud-order</artifactId>
     <version>${revision}</version>
-    <name>cloud-order</name>
+    <name>Alibaba Cloud Service Order</name>
 
     <description>Spring Cloud Alibaba Provider Order</description>
 

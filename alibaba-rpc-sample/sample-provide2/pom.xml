@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>sample-provide2</artifactId>
+    <name>Alibaba RPC Sample Provide2</name>
     <packaging>jar</packaging>
     <version>${revision}</version>
 

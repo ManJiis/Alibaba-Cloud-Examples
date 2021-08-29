@@ -8,25 +8,68 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
+</dependency>
 ```
 
-2. 配置中心 
+2. 配置中心
+
 ```xml
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
+
+<dependency>
+   <groupId>com.alibaba.cloud</groupId>
+   <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+</dependency>
 ```
+
+Nacos配置中心：
+
+为了区分环境或项目间的配置，我们需要了解 Nacos 给出的如下3个概念：
+
+- 命名空间(Namespace)
+
+命名空间可用于进行不同环境的配置隔离。一般一个环境(dev,demo,prod)划分到一个命名空间
+
+- 配置分组(Group)
+
+配置分组用于将不同的服务可以归类到同一分组。一般将一个项目的配置分到一组
+
+- 配置集(Data ID)
+
+在系统中，一个配置文件通常就是一个配置集。一般微服务的配置就是一个配置集
+
+[配置中心](src/main/resources/static/nacos-config-01.jpg)
+
+**在nacos新建配置文件时的`Data ID`命名注意事项**
+
+在 Nacos Spring Cloud 中，dataId 的完整格式如下：
+
+${prefix}-${spring.profile.active}.${file-extension}
+
+> `prefix` 默认为 spring.application.name 的值，也可以通过配置项 spring.cloud.nacos.config.prefix来配置。
+>
+> `spring.profile.active` 即为当前环境对应的 profile，详情可以参考 Spring Boot文档。
+>> 注意：当 spring.profile.active 为空时，对应的连接符 - 也将不存在，dataId 的拼接格式变成 ${prefix}.${file-extension}
+>
+> `file-exetension` 为配置内容的数据格式，可以通过配置项 spring.cloud.nacos.config.file-extension 来配置。目前只支持 properties 和 yaml 类型。
+
+例如:
+
+- b0x0-cloud-test-dev.yaml
+- b0x0-cloud-order-dev.yaml
+- b0x0-cloud-user-dev.yaml
+- b0x0-cloud-auth-dev.yaml
+- b0x0-cloud-gateway-dev.yaml
+
 3. 流量控制、熔断降级、系统负载保护
+
 ```xml
         <!-- sentinel 限流 服务监控 -->
-         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-         </dependency>
+<dependency>
+   <groupId>com.alibaba.cloud</groupId>
+   <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+</dependency>
         <!-- 将服务接入到sentinel控制台 -->
-         <dependency>
+<dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-transport-simple-http</artifactId>
          </dependency>
@@ -149,7 +192,7 @@ arthas tunnel server管理页面： http://localhost:8887/apps.html
 启动之后，可以访问 http://127.0.0.1:8887/ ，再通过agentId连接到已注册的 arthas agent 上。
 例如：
 ```
-http://localhost:8887/?targetServer=127.0.0.1&agentId=agent_user
+http://localhost:8887/?targetServer=127.0.0.1&agentId=arthas_agent_user
 ```
 
 
